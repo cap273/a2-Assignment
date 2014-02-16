@@ -57,9 +57,27 @@ public class CircularLinkedList<E> {
         /* Note: This method should NOT refer to field size. It refers to
          * field head and all the succ fields of the nodes. Reason: It allows
          * toString to be used in testing head and all the succ fields. */
+    	
+    	// Return empty brackets if list is empty
+    	if (getFirst() == null) {
+    		return "[]";
+    	}
+    	
+    	Node thisNode= getFirst(); // get pointer to head node
+    	String listString= "[" + thisNode.getValue(); // add value of head node to String output
+    	
+    	// Loop through linked list until it circles back to head node.
+    	while (thisNode.successor() != getFirst()) {
+    		// Move node to be examined down the list
+    		thisNode= thisNode.successor();
+    		
+    		// Progressively append to listString
+    		listString += ", " + thisNode.getValue();
+    	}
+    	
+    	// When while loop ends, close off listString with brackets and return.
+    	return listString + "]";
 
-        // Write this method and delete this comment
-        return null;
     }
 
     /** Return a representation of this list: its values in reverse, with adjacent
