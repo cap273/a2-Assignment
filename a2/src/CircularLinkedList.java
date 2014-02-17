@@ -1,9 +1,10 @@
-/* Time spent on a2:  hh hours and mm minutes.
- * Name:
- * Netid: 
+/* Time spent on a2:  6 hours and 0 minutes.
+ * Name: Carlos Patiño
+ * Netid:  cap273
  * What I thought about this assignment:
- *
- *
+ *	Took me some time to really understand what the field head
+ * 	was all about, but I think I'm much more confident with OO
+ *	concepts after this assignment.
  */
 
 /** An instance is a circular doubly linked list. */

@@ -71,7 +71,7 @@ public class CircularLinkedListTester {
 		assertEquals("[0, 1, 5, 2, 6, 4, 7]", v.toString());
 		assertEquals("[7, 4, 6, 2, 5, 1, 0]", v.toStringReverse());
 		assertEquals(7, v.size());
-		w.remove(w.getFirst()); // remove only node in list
+		w.remove(w.getFirst()); // remove node from list of size 1
 		assertEquals("[]", w.toString());
 		assertEquals("[]", w.toStringReverse());
 		assertEquals(0, w.size());
