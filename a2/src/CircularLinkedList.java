@@ -88,9 +88,27 @@ public class CircularLinkedList<E> {
         /* Note: This method should NOT refer to field size. It refers to
          * field head and all the pred fields of the nodes. Reason: It allows
          * toStringReverse to be used in testing head and all the pred fields. */
-
-        // Write this method and delete this comment
-        return null;
+    	
+    	// Return empty brackets if list is empty
+    	if (getLast() == null) {
+    		return "[]";
+    	}
+    	
+    	Node thisNode= getLast(); // get pointer to predecessor of head node (last node)
+    	String listString= "[" + thisNode.getValue(); // add value of last node to String output
+    	
+    	// Loop through linked list until it circles back to last node.
+    	while (thisNode.predecessor() != getLast()) {
+    		// Move node to be examined down the list
+    		thisNode= thisNode.predecessor();
+    		
+    		// Progressively append to listString
+    		listString += ", " + thisNode.getValue();
+    	}
+    	
+    	// When while loop ends, close off listString with brackets and return.
+    	return listString + "]";
+    	
     }
 
     /** Append value v to the list. */
@@ -98,8 +116,29 @@ public class CircularLinkedList<E> {
         /* Note: this method views the list as a list with a first and
          * a last value. It adds a new value at the end, not changing any
          * others. */
-
-        // Write this method and delete this comment
+    	
+    	// Create node to be appended.
+    	Node newNode= new Node(null, v, null);
+    	
+    	/* If list is originally empty, newNode becomes the list head and its own  
+    	 * successor and predecessor */
+        if (getLast() == null) {
+        	head= newNode;
+        	newNode.pred= newNode;
+        	newNode.succ= newNode;
+        			
+        } 
+        /* Otherwise, append newNode to list */
+        else {
+        	newNode.pred= getLast(); //predecessor of newNode becomes previous last node
+        	newNode.succ= getFirst(); //successor of newNode becomes list head
+        	getLast().succ= newNode; //successor of previous last node becomes newNode
+        	getFirst().pred= newNode; //predecessor of list head becomes newNode
+        	
+        }
+        
+        size += 1; // Increase number of nodes count of list by 1.
+        
     }
 
     /** Prepend value v to the list. */
@@ -108,7 +147,28 @@ public class CircularLinkedList<E> {
          * a last value. It adds a new value at the beginning, so head
          * should end up pointing to the new node. */
 
-        // Write this method and delete this comment
+    	// Create node to be appended.
+    	Node newNode= new Node(null, v, null);
+    	
+    	/* If list is originally empty, newNode becomes the list head and its own  
+    	 * successor and predecessor */
+        if (getFirst() == null) {
+        	head= newNode;
+        	newNode.pred= newNode;
+        	newNode.succ= newNode;
+        			
+        } 
+        /* Otherwise, prepend newNode to list */
+        else {
+        	newNode.succ= getFirst(); //successor of newNode becomes previous first node
+        	newNode.pred= getLast(); //predecessor of newNode becomes last node
+        	getFirst().pred= newNode; //predecessor of previous first node becomes newNode
+        	getLast().succ= newNode; //successor of last node becomes newNode
+        	head= newNode; //update list head to newNode
+        	
+        }
+        
+        size += 1; // Increase number of nodes count of list by 1.
     }
 
     /** Insert value v in a new node before node e of this circular list.
