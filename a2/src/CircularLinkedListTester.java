@@ -20,6 +20,7 @@ public class CircularLinkedListTester {
 		assertEquals("[Hello ]", w.toStringReverse());
 		assertEquals(1, w.size());
 		
+		
 		/* Test append method */
 		v.append(2);
 		v.append(4);
@@ -29,13 +30,13 @@ public class CircularLinkedListTester {
 		assertEquals(3, v.size());
 		/* Test prepend method */
 		v.prepend(65);
-		assertEquals((Integer) 65, v.valueOf(v.getFirst()));
-		assertEquals((Integer) 2, v.valueOf(v.getFirst().successor()));
-		assertEquals((Integer) 6, v.valueOf(v.getFirst().predecessor()));
-		assertEquals((Integer) 6, v.valueOf(v.getLast()));
 		assertEquals("[65, 2, 4, 6]", v.toString());
 		assertEquals("[6, 4, 2, 65]", v.toStringReverse());
 		assertEquals(4, v.size());
+		v.prepend(97);
+		assertEquals("[97, 65, 2, 4, 6]", v.toString());
+		assertEquals("[6, 4, 2, 65, 97]", v.toStringReverse());
+		assertEquals(5, v.size());
 		
 		
 	}

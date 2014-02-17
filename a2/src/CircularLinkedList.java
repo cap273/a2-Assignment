@@ -160,11 +160,20 @@ public class CircularLinkedList<E> {
         } 
         /* Otherwise, prepend newNode to list */
         else {
+        	/* Change pred and succ fields in newNode */
         	newNode.succ= getFirst(); //successor of newNode becomes previous first node
         	newNode.pred= getLast(); //predecessor of newNode becomes last node
-        	getFirst().pred= newNode; //predecessor of previous first node becomes newNode
+        	
+        	/* Change succ field in last node and pred field in previous first node.
+        	 * Note that the order in which this is done is important. If the pred field
+        	 * of previous first node is changed first to newNode, calling getLast() will 
+        	 * return newNode instead of the last node.
+        	 */
         	getLast().succ= newNode; //successor of last node becomes newNode
-        	head= newNode; //update list head to newNode
+        	getFirst().pred= newNode; //predecessor of previous first node becomes newNode
+        	
+        	/* update list head to newNode */
+        	head= newNode;
         	
         }
         
