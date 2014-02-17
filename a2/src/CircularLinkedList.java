@@ -187,7 +187,24 @@ public class CircularLinkedList<E> {
          * really matter which node head points to when the method is done.
          * However, we require that head does not change. */
 
-        // Write this method and delete this comment
+    	/* Create node to be inserted. */
+    	Node newNode= new Node(null, v, null);
+    	
+    	/* Get node before and node after newNode. */
+    	Node beforeNode= e.predecessor();
+    	Node afterNode= e;
+    	
+    	/* Change pred and succ fields of newNode */
+    	newNode.pred= beforeNode;
+    	newNode.succ= afterNode;
+    	
+    	/* Change succ field and pred field of beforeNode and afterNode, respectively */
+    	beforeNode.succ= newNode;
+    	afterNode.pred= newNode;
+    	
+    	/* Update size of list */
+    	size += 1;
+    	
     }
 
     /** Insert value v in a new node after node e.
@@ -197,7 +214,23 @@ public class CircularLinkedList<E> {
          * really matter which node head points to when the method is done.
          * However, we require that head does not change. */
 
-        // Write this method and delete this comment
+    	/* Create node to be inserted. */
+    	Node newNode= new Node(null, v, null);
+    	
+    	/* Get node before and node after newNode. */
+    	Node beforeNode= e;
+    	Node afterNode= e.successor();
+    	
+    	/* Change pred and succ fields of newNode */
+    	newNode.pred= beforeNode;
+    	newNode.succ= afterNode;
+    	
+    	/* Change succ field and pred field of beforeNode and afterNode, respectively */
+    	beforeNode.succ= newNode;
+    	afterNode.pred= newNode;
+    	
+    	/* Update size of list */
+    	size += 1;
     }
 
     /** Remove node e from this list.
@@ -207,7 +240,26 @@ public class CircularLinkedList<E> {
         /* Note: if the head (first) node is being removed and size >= 2, head
          * should end up pointing at head's successor. */
 
-        // Write this method and delete this comment
+        /* Get node before and node after e. */
+    	Node beforeNode= e.predecessor();
+    	Node afterNode= e.successor();
+    	
+    	/* Change succ and pred field of beforeNode */
+    	beforeNode.succ= afterNode;
+    	afterNode.pred= beforeNode;
+    	
+    	/* Change head pointer if head node is being removed */
+    	if (e == head){
+    		if (size >= 2){
+    			head= afterNode;
+    		}
+    		else { // If the only node of the list is removed, list is empty and head is now null
+    			head= null;
+    		}
+    	}
+    	
+    	/* Update size of list */
+    	size -= 1;
     } 
 
 
